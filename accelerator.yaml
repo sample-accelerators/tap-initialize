@@ -28,8 +28,8 @@ accelerator:
 engine:
   merge:
     - include: ["**/*"]
-      exclude: ["README.md", "LICENSE", "config/*.yaml"]
-    - include: ["config/*.yaml"]
+      exclude: ["README.md", "LICENSE", "config/*.yaml", "catalog/*.yaml"]
+    - include: ["config/workload.yaml"]
       chain:
         - type: ReplaceText
           substitutions:
@@ -51,3 +51,13 @@ engine:
           substitutions:
             - text: main
               with: "#gitBranch"
+    - include: ["catalog/catalog-info.yaml"]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: my-component
+              with: "#artifactId"
+        - type: ReplaceText
+          substitutions:
+            - text: my-app
+              with: "#artifactId"
