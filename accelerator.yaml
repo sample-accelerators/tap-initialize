@@ -1,0 +1,53 @@
+accelerator:
+  displayName: TAP Initializer
+  description: Boilerplate for initializing a Workload for Tanzu Application Platform.
+  iconUrl: https://blogs.vmware.com/cloudprovider/files/2021/09/logo-vmware-tanzu-square-Header.png
+  tags:
+    - tanzu
+
+  options:
+    - name: workloadType
+      inputType: text
+      label: Workload Type
+      display: true
+      defaultValue: web
+
+    - name: gitRepository
+      inputType: text
+      label: Git Repository
+      display: true
+      required: true
+
+    - name: gitBranch
+      inputType: text
+      label: Git Branch
+      defaultValue: main
+      display: true
+      required: true
+
+engine:
+  merge:
+    - include: ["**/*"]
+      exclude: ["README.md", "LICENSE", "config/*.yaml"]
+    - include: ["config/*.yaml"]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: my-workload
+              with: "#artifactId"
+        - type: ReplaceText
+          substitutions:
+            - text: my-app
+              with: "#artifactId"
+        - type: ReplaceText
+          substitutions:
+            - text: web
+              with: "#workloadType"
+        - type: ReplaceText
+          substitutions:
+            - text: "https://example.com/"
+              with: "#gitRepository"
+        - type: ReplaceText
+          substitutions:
+            - text: main
+              with: "#gitBranch"
