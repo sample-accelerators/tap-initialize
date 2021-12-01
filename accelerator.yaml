@@ -25,10 +25,26 @@ accelerator:
       display: true
       required: true
 
+    - name: toggleIDESupport
+      inputType: toggle
+      label: Include IDE Support for Java Workloads
+      display: true
+      dataType: boolean
+      defaultValue: false
+
+    - name: repositoryPrefix
+      inputType: text
+      label: Prefix for the container image repository
+      defaultValue: dev.local
+      dependsOn:
+        name: toggleIDESupport
+      required: true
+
 engine:
   merge:
     - include: ["**/*"]
-      exclude: ["README.md", "LICENSE", "config/*.yaml", "catalog/*.yaml"]
+      exclude:
+        ["README.md", "LICENSE", "config/*.yaml", "catalog/*.yaml", "Tiltfile"]
     - include: ["config/workload.yaml"]
       chain:
         - type: ReplaceText
@@ -61,3 +77,14 @@ engine:
           substitutions:
             - text: my-app
               with: "#artifactId"
+    - condition: "#toggleIDESupport"
+      include: ["Tiltfile"]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: my-workload
+              with: "#artifactId"
+        - type: ReplaceText
+          substitutions:
+            - text: registry.example.com/project
+              with: "#repositoryPrefix"
