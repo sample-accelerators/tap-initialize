@@ -44,7 +44,7 @@ accelerator:
       defaultValue: dev.local
       dependsOn:
         name: toggleIDESupport
-      required: true
+      #required: true
 
 engine:
   merge:
