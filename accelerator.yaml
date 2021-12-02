@@ -6,6 +6,12 @@ accelerator:
     - tanzu
 
   options:
+    - name: projectName
+      label: Name
+      description: The name for your new project
+      display: false
+      defaultValue: "new-project"
+
     - name: workloadType
       inputType: text
       label: Workload Type
