@@ -7,4 +7,4 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: default-owner
+  owner: guest
