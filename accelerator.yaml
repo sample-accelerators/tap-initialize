@@ -32,7 +32,7 @@ accelerator:
       required: true
 
     - name: toggleIDESupport
-      inputType: toggle
+      inputType: checkbox
       label: Include IDE Support for Java Workloads
       display: true
       dataType: boolean
