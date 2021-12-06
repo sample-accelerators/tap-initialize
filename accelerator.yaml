@@ -30,15 +30,15 @@ accelerator:
       label: Include IDE Support for Java Workloads
       display: true
       dataType: boolean
-      defaultValue: false
+      defaultValue: true
 
     - name: repositoryPrefix
       inputType: text
-      label: Prefix for the container image repository
+      label: Container image repository
+      description: The repository where images can be stored during development
       defaultValue: dev.local
       dependsOn:
         name: toggleIDESupport
-      #required: true
 
 engine:
   merge:
