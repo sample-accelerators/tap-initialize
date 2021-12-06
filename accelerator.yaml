@@ -12,12 +12,6 @@ accelerator:
       display: false
       defaultValue: "new-project"
 
-    - name: workloadType
-      inputType: text
-      label: Workload Type
-      display: true
-      defaultValue: web
-
     - name: gitRepository
       inputType: text
       label: Git Repository
@@ -61,10 +55,6 @@ engine:
           substitutions:
             - text: my-app
               with: "#artifactId"
-        - type: ReplaceText
-          substitutions:
-            - text: web
-              with: "#workloadType"
         - type: ReplaceText
           substitutions:
             - text: "https://example.com/"
