@@ -5,11 +5,11 @@ NAMESPACE = os.getenv("NAMESPACE", default='default')
 k8s_custom_deploy(
     'my-workload',
     apply_cmd="tanzu apps workload apply -f config/workload.yaml --live-update" +
-               " --local-path " + LOCAL_PATH +
-               " --source-image " + SOURCE_IMAGE +
-               " --namespace " + NAMESPACE +
-               " --yes >/dev/null " +
-              "&& kubectl get workload my-workload --namespace " + NAMESPACE + " -o yaml",
+              " --local-path " + LOCAL_PATH +
+              " --source-image " + SOURCE_IMAGE +
+              " --namespace " + NAMESPACE +
+              " --yes >/dev/null" +
+              " && kubectl get workload my-workload --namespace " + NAMESPACE + " -o yaml",
     delete_cmd="tanzu apps workload delete -f config/workload.yaml --namespace " + NAMESPACE + " --yes",
     deps=['pom.xml', './target/classes'],
     image_selector='registry.example.com/project/my-workload',
