@@ -6,11 +6,11 @@ accelerator:
     - tanzu
 
   options:
-    - name: projectName
-      label: Name
-      description: The name for your new project
-      display: false
-      defaultValue: "new-project"
+    # - name: projectName
+    #   label: Name
+    #   description: The name for your new project
+    #   display: false
+    #   defaultValue: "new-project"
 
     - name: gitRepository
       inputType: text
