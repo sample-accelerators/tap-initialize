@@ -25,40 +25,36 @@ accelerator:
       display: true
       required: true
 
-    - name: toggleIDESupport
+    - name: liveUpdateIDESupport
       inputType: checkbox
-      label: Include IDE Support for Java Workloads
+      label: Include TAP IDE Support for Java Workloads
       display: true
       dataType: boolean
-      defaultValue: true
+      defaultValue: false
 
-    - name: repositoryPrefix
+    - name: sourceRepositoryPrefix
       inputType: text
-      label: Container image repository
-      description: The repository where images can be stored during development
+      label: The source repository prefix to use when pushing the source
+      description: The prefix for the repository where source can be stored during development
       defaultValue: dev.local
       dependsOn:
-        name: toggleIDESupport
+        name: liveUpdateIDESupport
 
 engine:
   merge:
     - include: ["**/*"]
       exclude:
-        ["README.md", "LICENSE", "config/*.yaml", "catalog/*.yaml", "Tiltfile"]
+        ["README.md", "INSTUCTIONS.md", "LICENSE", "live-update/**", "config/**l", "catalog/**", "Tiltfile"]
     - include: ["config/workload.yaml"]
       chain:
         - type: ReplaceText
           substitutions:
-            - text: my-workload
-              with: "#artifactId"
-        - type: ReplaceText
-          substitutions:
-            - text: my-app
-              with: "#artifactId"
-        - type: ReplaceText
-          substitutions:
-            - text: "https://example.com/"
+            - text: "https://git.example.com/my-repo"
               with: "#gitRepository"
+        - type: ReplaceText
+          substitutions:
+            - text: my-project
+              with: "#artifactId"
         - type: ReplaceText
           substitutions:
             - text: main
@@ -67,20 +63,36 @@ engine:
       chain:
         - type: ReplaceText
           substitutions:
-            - text: my-component
+            - text: my-project
               with: "#artifactId"
-        - type: ReplaceText
-          substitutions:
-            - text: my-app
-              with: "#artifactId"
-    - condition: "#toggleIDESupport"
+    - condition: "#liveUpdateIDESupport"
       include: ["Tiltfile"]
       chain:
         - type: ReplaceText
           substitutions:
-            - text: my-workload
+            - text: my-project
               with: "#artifactId"
         - type: ReplaceText
           substitutions:
-            - text: registry.example.com/project
-              with: "#repositoryPrefix"
+            - text: dev.local
+              with: "#sourceRepositoryPrefix"
+    - condition: "#liveUpdateIDESupport"
+      include: ["live-update/INSTRUCTIONS.md"]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: my-project
+              with: "#artifactId"
+        - type: ReplaceText
+          substitutions:
+            - text: dev.local
+              with: "#sourceRepositoryPrefix"
+        - type: RewritePath
+          rewriteTo: "'INSTRUCTIONS.md'"
+    - condition: "!#liveUpdateIDESupport"
+      include: ["INSTRUCTIONS.md"]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: my-project
+              with: "#artifactId"
