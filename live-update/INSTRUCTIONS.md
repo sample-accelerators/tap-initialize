@@ -21,9 +21,9 @@ You can open this project using Visual Studio Code. Make sure you have [VMware T
 
 For best results use Tilt version v0.23.2 or later. You can install Tilt by following these instructions: https://docs.tilt.dev/install.html
 
-Follow instructions in the documentation for deploying your app for live update and debugging.
+Follow [instructions in the documentation](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-vscode-extension-usage-iterating-on-app.html) for deploying your app for live update and debugging.
 
-These are the basic steps:
+These are the basic steps to use live update:
 
 1. In Visual Studio Code, navigate to `Preferences > Settings > Extensions > Tanzu`.
     - In the `Source Image` field, provide the destination image repository to publish an image containing your workload source code. This should match what is specified for `SOURCE_IMAGE` default in the Tiltfile.
@@ -40,7 +40,7 @@ These are the basic steps:
         Follow the instructions and add the line "allow_k8s_contexts('cluster-name')" to your Tiltfile.
 1. When the Live Update status in the status bar is visible, resolve to "Live Update Started", navigate to http://localhost:8080 in your browser, and view your running application.
 1. Make changes to the source code. When the codes is saved the running application will get updated.
-1. Either continue making changes, or stop and disable the live update when finished. Open the command palette (⇧⌘P), type "Tanzu", and select `Tanzu: Live Update Stop` or `Tanzu: Live Update Disable`.
+1. Either continue making changes, or stop the live update when finished. Open the command palette (⇧⌘P), type "Tanzu", and select `Tanzu: Live Update Stop`.
 
 ### Deploying to Kubernetes as a TAP workload with Tanzu CLI
 
