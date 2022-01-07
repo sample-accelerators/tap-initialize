@@ -19,6 +19,8 @@ You can now follow the instructions below top deploy and debug your project.
 
 You can open this project using Visual Studio Code. Make sure you have [VMware Tanzu Developer Tools for Visual Studio Code](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-vscode-extension-about.html) installed.
 
+For best results use Tilt version v0.23.2 or later. You can install Tilt by following these instructions: https://docs.tilt.dev/install.html
+
 Follow instructions in the documentation for deploying your app for live update and debugging.
 
 These are the basic steps:
