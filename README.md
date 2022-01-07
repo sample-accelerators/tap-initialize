@@ -7,4 +7,4 @@ The following files are included:
 - `catalog/catalog-info.yaml`: The definition of a Component to make the Workload available in the TAP GUI Catalog
 - `Tiltfile`: A Tiltfile to enable Live Update and Debugging for Java Workloads using the TAP IDE Plugin
 
-When generating new project files using this accelerator, set the `Name` to match the name of the project that your are planning to add these files to.
+When generating new project files using this accelerator, set the `Name of target project` to match the name of the project that your are planning to add these files to.

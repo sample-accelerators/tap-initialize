@@ -6,11 +6,11 @@ accelerator:
     - tanzu
 
   options:
-    # - name: projectName
-    #   label: Name
-    #   description: The name for your new project
-    #   display: false
-    #   defaultValue: "new-project"
+    - name: targetProject
+      label: Name of target project
+      description: The name of the project where you will copy the generated files
+      display: true
+      defaultValue: "target-project"
 
     - name: gitRepository
       inputType: text
@@ -54,7 +54,7 @@ engine:
         - type: ReplaceText
           substitutions:
             - text: my-project
-              with: "#artifactId"
+              with: "#targetProject"
         - type: ReplaceText
           substitutions:
             - text: main
@@ -64,14 +64,14 @@ engine:
         - type: ReplaceText
           substitutions:
             - text: my-project
-              with: "#artifactId"
+              with: "#targetProject"
     - condition: "#liveUpdateIDESupport"
       include: ["Tiltfile"]
       chain:
         - type: ReplaceText
           substitutions:
             - text: my-project
-              with: "#artifactId"
+              with: "#targetProject"
         - type: ReplaceText
           substitutions:
             - text: dev.local
@@ -82,7 +82,7 @@ engine:
         - type: ReplaceText
           substitutions:
             - text: my-project
-              with: "#artifactId"
+              with: "#targetProject"
         - type: ReplaceText
           substitutions:
             - text: dev.local
@@ -95,4 +95,4 @@ engine:
         - type: ReplaceText
           substitutions:
             - text: my-project
-              with: "#artifactId"
+              with: "#targetProject"
