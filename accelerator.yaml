@@ -1,7 +1,7 @@
 accelerator:
   displayName: TAP Initializer
   description: Boilerplate for initializing a Workload for Tanzu Application Platform.
-  iconUrl: https://blogs.vmware.com/cloudprovider/files/2021/09/logo-vmware-tanzu-square-Header.png
+  iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png
   tags:
     - tanzu
 
