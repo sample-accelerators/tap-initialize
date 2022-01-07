@@ -30,6 +30,14 @@ These are the basic steps:
 1. From the Command Palette (⇧⌘P), type "Tanzu", and select `Tanzu: Live Update Start`. You can view output from Tanzu Application Platform and from Tilt indicating that the container is being built and deployed.
     - You see "Live Update starting..." in the status bar at the bottom right.
     - Live update can take 1-3 minutes while the workload deploys and the Knative service becomes available.
+        > Note: Depending on the type of cluster you use, you might see an error similar to the following:
+        ```
+        ERROR: Stop! cluster-name might be production.
+        If you're sure you want to deploy there, add:
+                allow_k8s_contexts('cluster-name')
+        to your Tiltfile. Otherwise, switch k8s contexts and restart Tilt.
+        ```
+        Follow the instructions and add the line "allow_k8s_contexts('cluster-name')" to your Tiltfile.
 1. When the Live Update status in the status bar is visible, resolve to "Live Update Started", navigate to http://localhost:8080 in your browser, and view your running application.
 1. Make changes to the source code. When the codes is saved the running application will get updated.
 1. Either continue making changes, or stop and disable the live update when finished. Open the command palette (⇧⌘P), type "Tanzu", and select `Tanzu: Live Update Stop` or `Tanzu: Live Update Disable`.
