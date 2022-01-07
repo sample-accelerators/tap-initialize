@@ -1,6 +1,6 @@
 accelerator:
-  displayName: TAP Initializer
-  description: Boilerplate for initializing a Workload for Tanzu Application Platform.
+  displayName: TAP Project Configuration
+  description: Boilerplate for generating Tanzu Application Platform Workload configuration files to add to an existing project.
   iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png
   tags:
     - tanzu

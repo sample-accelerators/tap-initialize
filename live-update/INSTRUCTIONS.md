@@ -11,7 +11,7 @@ The following files are included:
 
 Copy the provided `config` and `catalog` directories including the files they contain into your `my-project` project. Also copy the `Tiltfile` to the root directory of `my-project` project.
 
-You can now follow the instructions below top deploy and debug your project.
+You can now follow the instructions below to deploy and debug your project.
 
 ## Working on your my-project project
 
