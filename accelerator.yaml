@@ -7,92 +7,32 @@ accelerator:
 
   options:
     - name: targetProject
-      label: Name of target project
+      label: Name of new target project
       description: The name of the project where you will copy the generated files
       display: true
       defaultValue: "target-project"
 
-    - name: gitRepository
-      inputType: text
-      label: Git Repository
-      display: true
-      required: true
-
-    - name: gitBranch
-      inputType: text
-      label: Git Branch
-      defaultValue: main
-      display: true
-      required: true
-
-    - name: liveUpdateIDESupport
-      inputType: checkbox
-      label: Include TAP IDE Support for Java Workloads
-      display: true
-      dataType: boolean
-      defaultValue: false
-
-    - name: sourceRepositoryPrefix
-      inputType: text
-      label: The source repository prefix to use when pushing the source
-      description: The prefix for the repository where source can be stored during development
-      defaultValue: dev.local
-      dependsOn:
-        name: liveUpdateIDESupport
+  imports:
+    - name: tap-initialize
+    - name: live-update
 
 engine:
   merge:
     - include: ["**/*"]
-      exclude:
-        ["README.md", "INSTUCTIONS.md", "LICENSE", "live-update/**", "config/**l", "catalog/**", "Tiltfile"]
-    - include: ["config/workload.yaml"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "https://git.example.com/my-repo"
-              with: "#gitRepository"
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#targetProject"
-        - type: ReplaceText
-          substitutions:
-            - text: main
-              with: "#gitBranch"
-    - include: ["catalog/catalog-info.yaml"]
+      exclude: ["README.md", "INSTUCTIONS.md", "LICENSE"]
+    - include: ["INSTRUCTIONS.md"]
       chain:
         - type: ReplaceText
           substitutions:
             - text: my-project
               with: "#targetProject"
-    - condition: "#liveUpdateIDESupport"
-      include: ["Tiltfile"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#targetProject"
-        - type: ReplaceText
-          substitutions:
-            - text: dev.local
-              with: "#sourceRepositoryPrefix"
-    - condition: "#liveUpdateIDESupport"
-      include: ["live-update/INSTRUCTIONS.md"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#targetProject"
-        - type: ReplaceText
-          substitutions:
-            - text: dev.local
-              with: "#sourceRepositoryPrefix"
-        - type: RewritePath
-          rewriteTo: "'INSTRUCTIONS.md'"
-    - condition: "!#liveUpdateIDESupport"
-      include: ["INSTRUCTIONS.md"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: my-project
-              with: "#targetProject"
+    - type: InvokeFragment
+      let:
+      - name: artifactId
+        expression: "#targetProject"
+      reference: tap-initialize
+    - type: InvokeFragment
+      let:
+      - name: artifactId
+        expression: "#targetProject"
+      reference: live-update
