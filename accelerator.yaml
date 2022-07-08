@@ -1,14 +1,14 @@
 accelerator:
   displayName: TAP Project Configuration
-  description: Boilerplate for generating Tanzu Application Platform Workload configuration files to add to an existing project.
+  description: Boilerplate for generating Tanzu Application Platform Workload configuration files to add to an existing target project.
   iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png
   tags:
     - tanzu
 
   options:
     - name: targetProject
-      label: Name of new target project
-      description: The name of the project where you will copy the generated files
+      label: Name of the target project
+      description: The name of the project where you will add the generated files
       display: true
       defaultValue: "target-project"
 
