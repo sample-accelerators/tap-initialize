@@ -1,5 +1,8 @@
 # Tanzu Application Platform Initialize Accelerator
 
+> **NOTE** This repo has been archived and the sample has moved to:  
+> https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tap-initialize
+
 This is an accelerator to generate the necessary boilerplate for a TAP workload. Use this accelerator to generate the boilerplate files and then place them alongside the source code for your workload.
 
 The following files are included:
